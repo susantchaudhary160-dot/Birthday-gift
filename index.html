@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday 🎂</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3, #8e44ad);
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 35px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            color: white;
+            animation: appear 1.5s ease;
+            z-index: 2;
+        }
+
+        .cake {
+            font-size: 80px;
+            animation: bounce 2s infinite;
+        }
+
+        h1 {
+            font-size: clamp(35px, 10vw, 60px);
+            margin: 10px 0;
+            text-shadow: 0 0 15px rgba(255,255,255,0.8);
+        }
+
+        h2 {
+            font-size: clamp(22px, 6vw, 32px);
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            border: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            background: white;
+            color: #e84393;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.5);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 5;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 18px;
+            }
+
+            .cake {
+                font-size: 65px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="cake">🎂</div>
+
+        <h1>Happy Birthday!</h1>
+
+        <h2>🎉 Many Many Happy Returns! 🎉</h2>
+
+        <p>
+            Wishing you a day filled with happiness, laughter,
+            love and unforgettable moments. 💖
+            May all your dreams come true! ✨
+        </p>
+
+        <button class="btn" onclick="celebrate()">
+            🎊 Celebrate 🎊
+        </button>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+
+            const colors = [
+                "#ff4757",
+                "#ffa502",
+                "#2ed573",
+                "#1e90ff",
+                "#e84393",
+                "#ffffff",
+                "#ffd32a"
+            ];
+
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor =
+                colors[Math.floor(Math.random() * colors.length)];
+
+            confetti.style.width = (Math.random() * 8 + 6) + "px";
+            confetti.style.height = (Math.random() * 8 + 6) + "px";
+
+            confetti.style.animationDuration =
+                (Math.random() * 3 + 2) + "s";
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        function celebrate() {
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createConfetti, i * 20);
+            }
+        }
+
+        // Automatic confetti
+        setInterval(createConfetti, 120);
+
+        // Initial celebration
+        window.onload = function() {
+            celebrate();
+        };
+    </script>
+
+</body>
+</html>
